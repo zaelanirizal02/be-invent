@@ -98,6 +98,7 @@ public class ProductController {
         return productService.findByProductNameLike(searchData.getSearchKey());
     }
 
+    //cari by category id
     @GetMapping("/search/category/{categoryId}")
     public List<Product> getProductByCategory(@PathVariable("categoryId") Long categoryId){
         return productService.findByCategory(categoryId);
