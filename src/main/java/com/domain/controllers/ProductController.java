@@ -93,7 +93,7 @@ public class ProductController {
         return productService.findByProductName(searchData.getSearchKey());
     }
 
-    @PostMapping("/search/namelike")
+    @PostMapping("/search/nameLike")
     public List<Product> getProductByNameLike(@RequestBody SearchData searchData){
         return productService.findByProductNameLike(searchData.getSearchKey());
     }
