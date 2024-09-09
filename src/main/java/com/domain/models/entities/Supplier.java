@@ -2,8 +2,7 @@ package com.domain.models.entities;
 
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,10 +14,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbl_suppliers")
-@JsonIdentityInfo( //untuk memunculkan product yang sudah ada supplier nya
-    generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id"
-)
+// @JsonIdentityInfo( //untuk memunculkan product yang sudah ada supplier nya
+//     generator = ObjectIdGenerators.PropertyGenerator.class,
+//             property = "id"
+// )
 public class Supplier {
 
     @Id
@@ -35,7 +34,7 @@ public class Supplier {
     private String email;
 
     @ManyToMany(mappedBy = "suppliers")
-    // @JsonBackReference
+    @JsonBackReference
     private Set<Product> product;
 
     public Set<Product> getProduct() {

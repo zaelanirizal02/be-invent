@@ -1,6 +1,7 @@
 package com.domain.services;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class ProductService {
 
     @Autowired
     private ProductRepo productRepo;
+
+    @Autowired
+    private SupplierService supplierService;
 
     public Product save(Product product) {
         return productRepo.save(product);
@@ -59,5 +63,13 @@ public class ProductService {
 
     public List<Product> findByCategory(Long categoryId){
        return productRepo.findProductByCatergory(categoryId); 
+    }
+
+    public List<Product> findBySupplier(Long supplierId){
+        Supplier supplier = supplierService.findOne(supplierId);
+        if (supplier == null) {
+            return new ArrayList<Product>();
+        }
+        return productRepo.findProductBySupplier(supplier);
     }
 }

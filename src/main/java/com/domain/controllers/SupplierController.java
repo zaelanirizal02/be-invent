@@ -1,5 +1,6 @@
 package com.domain.controllers;
 
+import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.domain.dto.ResponseData;
+import com.domain.dto.SearchData;
 import com.domain.dto.SupplierData;
 import com.domain.models.entities.Supplier;
 import com.domain.services.SupplierService;
@@ -79,5 +81,20 @@ public class SupplierController {
         responseData.setStatus(true);
         responseData.setPayload(supplierService.save(supplier));
         return ResponseEntity.ok(responseData);
+    }
+
+    @PostMapping ("/search/byemail")
+    public Supplier findByEmail(@RequestBody SearchData searchData){
+        return supplierService.findByEmail(searchData.getSearchKey());
+    }
+
+    @PostMapping ("/search/byname")
+    public List <Supplier> findByName(@RequestBody SearchData searchData){
+        return supplierService.findByName(searchData.getSearchKey());
+    }
+
+    @PostMapping("/search/namestartwith")
+    public List <Supplier> findByNameStartWith(@RequestBody SearchData searchData){
+        return supplierService.findByNameStartWith(searchData.getSearchKey());
     }
 }

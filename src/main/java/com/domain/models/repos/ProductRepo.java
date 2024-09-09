@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.domain.models.entities.Product;
+import com.domain.models.entities.Supplier;
 
 
 public interface ProductRepo extends CrudRepository<Product, Long> {
@@ -20,4 +21,7 @@ public interface ProductRepo extends CrudRepository<Product, Long> {
 
     @Query("SELECT p From Product p WHERE p.category.id = :categoryId")
     public List<Product> findProductByCatergory(@Param("categoryId")Long categoryId);
+
+    @Query("SELECT p FROM Product p WHERE :supplier MEMBER OF p.suppliers")
+    public List<Product> findProductBySupplier(@Param("supplier") Supplier supplier);
 }

@@ -1,6 +1,7 @@
 package com.domain.services;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,21 @@ public class SupplierService {
 
     public void removeOne(Long id){
         supplierRepo.deleteById(id);
+    }
+
+    //menggunakan jpa custom
+    public Supplier findByEmail(String email){
+        return supplierRepo.findByEmail(email);
+    }
+
+    //menggunakan jpa custom untuk mencari name
+    public List<Supplier> findByName (String name){
+        return supplierRepo.findByNameContains(name);
+    }
+
+     //menggunakan jpa custom untuk mencari name
+     public List<Supplier> findByNameStartWith (String prefix){
+        return supplierRepo.findByNameStartingWith(prefix);
     }
 
 }

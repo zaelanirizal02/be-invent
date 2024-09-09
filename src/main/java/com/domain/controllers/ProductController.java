@@ -93,7 +93,7 @@ public class ProductController {
         return productService.findByProductName(searchData.getSearchKey());
     }
 
-    @PostMapping("/search/nameLike")
+    @PostMapping("/search/namelike")
     public List<Product> getProductByNameLike(@RequestBody SearchData searchData){
         return productService.findByProductNameLike(searchData.getSearchKey());
     }
@@ -102,5 +102,11 @@ public class ProductController {
     @GetMapping("/search/category/{categoryId}")
     public List<Product> getProductByCategory(@PathVariable("categoryId") Long categoryId){
         return productService.findByCategory(categoryId);
+    }
+
+    //cari by supplier id
+    @GetMapping("/search/supplier/{supplierId}")
+    public List<Product> getProductBySupplier(@PathVariable("supplierId") Long supplierId){
+        return productService.findBySupplier(supplierId);
     }
 }
