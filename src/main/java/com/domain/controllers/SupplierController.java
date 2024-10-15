@@ -83,23 +83,33 @@ public class SupplierController {
         return ResponseEntity.ok(responseData);
     }
 
-    @PostMapping ("/search/byemail")
-    public Supplier findByEmail(@RequestBody SearchData searchData){
+    @PostMapping("/search/byemail")
+    public Supplier findByEmail(@RequestBody SearchData searchData) {
         return supplierService.findByEmail(searchData.getSearchKey());
     }
 
-    @PostMapping ("/search/byname")
-    public List <Supplier> findByName(@RequestBody SearchData searchData){
+    @PostMapping("/search/byname")
+    public List<Supplier> findByName(@RequestBody SearchData searchData) {
         return supplierService.findByName(searchData.getSearchKey());
     }
 
+    @PostMapping("/search/bynamedesc")
+    public List<Supplier> findByNameDesc(@RequestBody SearchData searchData) {
+        return supplierService.findByNameDesc(searchData.getSearchKey());
+    }
+
     @PostMapping("/search/namestartwith")
-    public List <Supplier> findByNameStartWith(@RequestBody SearchData searchData){
+    public List<Supplier> findByNameStartWith(@RequestBody SearchData searchData) {
         return supplierService.findByNameStartWith(searchData.getSearchKey());
     }
 
     @PostMapping("/search/byaddress")
-    public List <Supplier> findByAddress(@RequestBody SearchData searchData){
+    public List<Supplier> findByAddress(@RequestBody SearchData searchData) {
         return supplierService.findByAddress(searchData.getSearchKey());
+    }
+
+    @PostMapping("/search/bynameoremail")
+    public List<Supplier> findByNameOrEmail(@RequestBody SearchData searchData) {
+        return supplierService.findByNamerOrEmail(searchData.getSearchKey(), searchData.getOtherSearchKey());
     }
 }

@@ -62,7 +62,7 @@ public class ProductService {
     }
 
     public List<Product> findByCategory(Long categoryId){
-       return productRepo.findProductByCatergory(categoryId); 
+       return productRepo.findProductByCategory(categoryId); 
     }
 
     public List<Product> findBySupplier(Long supplierId){

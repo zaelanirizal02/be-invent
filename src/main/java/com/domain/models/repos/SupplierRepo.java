@@ -7,14 +7,19 @@ import com.domain.models.entities.Supplier;
 
 public interface SupplierRepo extends CrudRepository<Supplier, Long> {
 
-    //menggunakan jpa custom automatic
+    // menggunakan jpa custom automatic
     Supplier findByEmail(String email);
 
-    //menggunakan jpa custom untuk mencari name secara bebas
-    List <Supplier> findByNameContains(String name); 
+    // menggunakan jpa custom untuk mencari name secara bebas
+    List<Supplier> findByNameContains(String name);
 
-    List <Supplier> findByNameStartingWith (String prefix);
+    // gunakan orderByIdDesc apabila ingin mengurutkannya desec , atau sebaliknya.
+    // bisa reusable
+    List<Supplier> findByNameContainsOrderByIdDesc(String name);
 
-    List <Supplier> findByAddressContains (String address);
+    List<Supplier> findByNameStartingWith(String prefix);
 
-} 
+    List<Supplier> findByAddressContains(String address);
+
+    List<Supplier> findByNameContainsOrEmailContains(String name, String email);
+}

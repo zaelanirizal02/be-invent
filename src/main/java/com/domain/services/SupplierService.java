@@ -47,14 +47,22 @@ public class SupplierService {
     public List<Supplier> findByName (String name){
         return supplierRepo.findByNameContains(name);
     }
+    //menggunakan jpa custom untuk mencari data desc
+    public List<Supplier> findByNameDesc (String name){
+        return supplierRepo.findByNameContainsOrderByIdDesc(name);
+    }
 
      //menggunakan jpa custom untuk mencari name
      public List<Supplier> findByNameStartWith (String prefix){
         return supplierRepo.findByNameStartingWith(prefix);
     }
 
+    //search by address
     public List<Supplier> findByAddress (String address){
         return supplierRepo.findByAddressContains(address);
     }
 
+    public List<Supplier> findByNamerOrEmail (String name, String email){
+        return supplierRepo.findByNameContainsOrEmailContains(name, email);
+    }
 }

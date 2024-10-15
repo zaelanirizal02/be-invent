@@ -20,7 +20,7 @@ public interface ProductRepo extends CrudRepository<Product, Long> {
     public List<Product> findProductByNameLike(@Param("name") String name);
 
     @Query("SELECT p From Product p WHERE p.category.id = :categoryId")
-    public List<Product> findProductByCatergory(@Param("categoryId")Long categoryId);
+    public List<Product> findProductByCategory(@Param("categoryId")Long categoryId);
 
     @Query("SELECT p FROM Product p WHERE :supplier MEMBER OF p.suppliers")
     public List<Product> findProductBySupplier(@Param("supplier") Supplier supplier);
